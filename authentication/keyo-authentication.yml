@@ -1,0 +1,30 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/keyo-openapi.yml
+docs: https://developers.keyo.co/rest-api/authentication
+summary:
+  types:
+  - http
+  model: oauth2-client-credentials
+  notes: >-
+    Keyo implements the OAuth 2.0 Client Credentials flow for server-to-server
+    integrations. A base64-encoded secret key (client_id:client_secret) is
+    created on the organization dashboard API credentials page and presented as
+    `Authorization: Basic <secret-key>` to POST /oauth/token/ to obtain a
+    short-lived bearer access token. All subsequent API calls send
+    `Authorization: Bearer <access-token>`. Applications must handle token
+    expiration/renewal.
+schemes:
+- name: Basic
+  type: http
+  scheme: Basic
+  usage: Token endpoint only (POST /oauth/token/) - base64 client_id:client_secret
+  sources:
+  - openapi/keyo-openapi.yml
+- name: Bearer
+  type: http
+  scheme: bearer
+  bearerFormat: <access-token>
+  usage: All protected resource requests
+  sources:
+  - openapi/keyo-openapi.yml
