@@ -1,0 +1,95 @@
+openapi: 3.0.3
+info:
+  title: Keyo REST Authentication API
+  version: 1.0.0
+  description: 'The Keyo REST API lets an organization manage biometric Identities and drive palm-based enrollment on Keyo devices. Authentication uses the OAuth 2.0 Client Credentials flow: a base64 secret key (client_id:client_secret) is exchanged at the token endpoint for a short-lived bearer access token that authorizes all subsequent requests. Reconstructed by API Evangelist from the OpenAPI 3.0.3 fragments Keyo publishes inline in its developer documentation at https://developers.keyo.co (getting-started, rest-api, and webhooks pages).'
+  contact:
+    name: Keyo Developer Support
+    url: https://developers.keyo.co/resources/support
+  x-apievangelist-source: https://developers.keyo.co/llms.txt
+  x-apievangelist-method: searched
+servers:
+- url: https://api.keyo.co/v1
+  description: Global production
+- url: https://api.africa.keyo.co/v1
+  description: Africa region production
+security:
+- Bearer: []
+tags:
+- name: Authentication
+  description: Exchange client credentials for an access token.
+paths:
+  /oauth/token/:
+    post:
+      operationId: OAuthClientCredentials
+      summary: Obtain an access token
+      description: Exchange client credentials for a token to access protected resources.
+      tags:
+      - Authentication
+      security:
+      - Basic: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - client_credentials
+      responses:
+        '200':
+          description: Successfully retrieved access token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  expires_in:
+                    type: integer
+                  scope:
+                    type: string
+                  token_type:
+                    type: string
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    enum:
+                    - invalid_request
+                    - invalid_client
+                    - invalid_grant
+                    - invalid_scope
+                    - unauthorized_client
+                    - unsupported_grant_type
+        '401':
+          description: Authentication failure
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    enum:
+                    - invalid_client
+components:
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: Basic
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: <access-token>
