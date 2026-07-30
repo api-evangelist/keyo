@@ -1,27 +1,138 @@
 aid: keyo
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/keyo.png
 name: Keyo
-description: Keyo is a company surfaced as a portfolio company of 500-global, obvious-ventures and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Keyo is a palm-based biometric identification platform offering a complete
+  suite of touchless identity SaaS for payments, access control, ticketing, and
+  time & attendance. Its palm-print and palm-vein (near-infrared) technology
+  lets people verify their identity with a wave of the hand. Keyo exposes a REST
+  API (developers.keyo.co) for managing biometric Identities and driving palm
+  enrollment on Keyo devices, secured with the OAuth 2.0 client-credentials flow,
+  plus real-time webhooks for enrollment and identification events. Keyo is
+  backed by 500 Global and Obvious Ventures.
 url: https://raw.githubusercontent.com/api-evangelist/keyo/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
 - obvious-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: developer-surface-found
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Biometrics
+- Identity
+- Authentication
+- Palm Recognition
+- Access Control
+- Payments
+- Identity Verification
+apis:
+- aid: keyo:keyo-authentication-api
+  name: Keyo Authentication API
+  description: Exchange client credentials for an access token.
+  humanURL: https://developers.keyo.co
+  baseURL: https://api.keyo.co/v1
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/keyo-authentication-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/keyo-webhooks-asyncapi.yml
+  - type: Webhooks
+    url: asyncapi/keyo-webhooks-asyncapi.yml
+  - type: Arazzo
+    url: arazzo/keyo-enroll-identity.yml
+- aid: keyo:keyo-identities-api
+  name: Keyo Identities API
+  description: Manage biometric identities and palm enrollment.
+  humanURL: https://developers.keyo.co
+  baseURL: https://api.keyo.co/v1
+  tags:
+  - Identities
+  properties:
+  - type: OpenAPI
+    url: openapi/keyo-identities-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/keyo-webhooks-asyncapi.yml
+  - type: Webhooks
+    url: asyncapi/keyo-webhooks-asyncapi.yml
+  - type: Arazzo
+    url: arazzo/keyo-enroll-identity.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DeveloperPortal
+  url: https://developers.keyo.co
+- type: Documentation
+  url: https://developers.keyo.co
+- type: APIReference
+  url: https://developers.keyo.co/rest-api/identities
+- type: GettingStarted
+  url: https://developers.keyo.co/getting-started/overview
+- type: Support
+  url: https://developers.keyo.co/resources/support
+- type: Blog
+  url: https://keyo.com/newsroom
+- type: SignUp
+  url: https://keyo.com/get-keyo
+- type: PrivacyPolicy
+  url: https://keyo.com/privacy
+- type: LLMsTxt
+  url: llms/keyo-llms.txt
+- type: MCPServer
+  url: mcp/keyo-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Conventions
+  url: conventions/keyo-conventions.yml
+- type: ErrorCatalog
+  url: errors/keyo-problem-types.yml
+- type: DataModel
+  url: data-model/keyo-data-model.yml
+- type: Lifecycle
+  url: lifecycle/keyo-lifecycle.yml
+- type: StatusPage
+  url: https://status.keyo.co
+- type: Conformance
+  url: conformance/keyo-conformance.yml
+- type: Compliance
+  url: https://keyo.com/security
+- type: Security
+  url: https://keyo.com/security
+- type: AgenticAccess
+  url: agentic-access/keyo-agentic-access.yml
+- type: TrustCenter
+  url: security/keyo-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/keyo-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/keyo-domain-security.yml
+- type: Authentication
+  url: authentication/keyo-authentication.yml
 - type: Website
   url: https://keyo.com
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
