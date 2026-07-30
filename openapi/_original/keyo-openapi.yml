@@ -1,0 +1,310 @@
+openapi: 3.0.3
+info:
+  title: Keyo REST API
+  version: 1.0.0
+  description: >-
+    The Keyo REST API lets an organization manage biometric Identities and drive
+    palm-based enrollment on Keyo devices. Authentication uses the OAuth 2.0
+    Client Credentials flow: a base64 secret key (client_id:client_secret) is
+    exchanged at the token endpoint for a short-lived bearer access token that
+    authorizes all subsequent requests. Reconstructed by API Evangelist from the
+    OpenAPI 3.0.3 fragments Keyo publishes inline in its developer documentation
+    at https://developers.keyo.co (getting-started, rest-api, and webhooks pages).
+  contact:
+    name: Keyo Developer Support
+    url: https://developers.keyo.co/resources/support
+  x-apievangelist-source: https://developers.keyo.co/llms.txt
+  x-apievangelist-method: searched
+servers:
+  - url: https://api.keyo.co/v1
+    description: Global production
+  - url: https://api.africa.keyo.co/v1
+    description: Africa region production
+security:
+  - Bearer: []
+tags:
+  - name: Authentication
+    description: Exchange client credentials for an access token.
+  - name: Identities
+    description: Manage biometric identities and palm enrollment.
+paths:
+  /oauth/token/:
+    post:
+      operationId: OAuthClientCredentials
+      summary: Obtain an access token
+      description: Exchange client credentials for a token to access protected resources.
+      tags:
+        - Authentication
+      security:
+        - Basic: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - grant_type
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                    - client_credentials
+      responses:
+        '200':
+          description: Successfully retrieved access token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  expires_in:
+                    type: integer
+                  scope:
+                    type: string
+                  token_type:
+                    type: string
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    enum:
+                      - invalid_request
+                      - invalid_client
+                      - invalid_grant
+                      - invalid_scope
+                      - unauthorized_client
+                      - unsupported_grant_type
+        '401':
+          description: Authentication failure
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    enum:
+                      - invalid_client
+  /identities/:
+    get:
+      operationId: IdentitiesGet
+      summary: Retrieve a list of identities
+      description: Returns a paginated list of identities.
+      tags:
+        - Identities
+      parameters:
+        - name: limit
+          in: query
+          description: Number of results to return per page.
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          description: The initial index from which to return the results.
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved identities list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityList'
+    post:
+      operationId: IdentitiesPost
+      summary: Create an identity
+      description: >-
+        Create the Identity for a user relying on biometric identification to
+        access services.
+      tags:
+        - Identities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdentityBodyCreate'
+      responses:
+        '201':
+          description: Identity successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Identity'
+  /identities/{id}/:
+    get:
+      operationId: IdentityGet
+      summary: Retrieve single identity
+      tags:
+        - Identities
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '200':
+          description: Successfully retrieved identity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Identity'
+    patch:
+      operationId: IdentitiesPatch
+      summary: Update identity
+      tags:
+        - Identities
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdentityBodyUpdate'
+      responses:
+        '200':
+          description: Successfully updated identity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Identity'
+    delete:
+      operationId: IdentitiesDelete
+      summary: Delete identity
+      description: Completely deletes an identity, including biometric data.
+      tags:
+        - Identities
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      responses:
+        '204':
+          description: Identity successfully deleted
+  /identities/{id}/start-enroll/:
+    post:
+      operationId: IdentitiesStartEnroll
+      summary: Start biometric enrollment
+      description: >-
+        Begin the biometric data collection process for identity on the
+        specified device.
+      tags:
+        - Identities
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - device_id
+              properties:
+                device_id:
+                  type: integer
+                  description: >-
+                    The id of the device where the person will enroll their
+                    biometrics.
+      responses:
+        '200':
+          description: Successfully started biometric enrollment
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+components:
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: Basic
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: <access-token>
+  parameters:
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource
+      schema:
+        type: integer
+        format: int64
+  schemas:
+    Id:
+      properties:
+        id:
+          type: integer
+    Dates:
+      properties:
+        update_date:
+          type: string
+        creation_date:
+          type: string
+    Metadata:
+      properties:
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Custom metadata as key-value pairs
+    IdentityBase:
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          nullable: true
+          description: Required if `phone` is missing
+        phone:
+          type: string
+          nullable: true
+          description: Required if `email` is missing
+    IdentityBodyCreate:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/IdentityBase'
+        - $ref: '#/components/schemas/Metadata'
+      required:
+        - first_name
+        - last_name
+    IdentityBodyUpdate:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/IdentityBase'
+        - $ref: '#/components/schemas/Metadata'
+    Identity:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Id'
+        - $ref: '#/components/schemas/IdentityBase'
+        - $ref: '#/components/schemas/Dates'
+        - $ref: '#/components/schemas/Metadata'
+    IdentityList:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total number of items available.
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'

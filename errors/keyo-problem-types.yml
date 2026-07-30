@@ -1,0 +1,41 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/keyo-openapi.yml
+docs: https://developers.keyo.co/rest-api/authentication
+format: oauth2-error
+envelope:
+  shape: '{ "error": "<code>" }'
+  media_type: application/json
+  notes: >-
+    Keyo does not publish RFC 9457 problem+json. The only documented error
+    envelope is the OAuth 2.0 token-endpoint error object (RFC 6749 style), with
+    an `error` string. Other operations document success responses only.
+problems:
+- status: 400
+  code: invalid_request
+  title: Invalid request
+  source_operation: openapi/keyo-openapi.yml#OAuthClientCredentials
+- status: 400
+  code: invalid_client
+  title: Client authentication failed
+  source_operation: openapi/keyo-openapi.yml#OAuthClientCredentials
+- status: 400
+  code: invalid_grant
+  title: Invalid or expired grant
+  source_operation: openapi/keyo-openapi.yml#OAuthClientCredentials
+- status: 400
+  code: invalid_scope
+  title: Requested scope is invalid or unknown
+  source_operation: openapi/keyo-openapi.yml#OAuthClientCredentials
+- status: 400
+  code: unauthorized_client
+  title: Client is not authorized for this grant type
+  source_operation: openapi/keyo-openapi.yml#OAuthClientCredentials
+- status: 400
+  code: unsupported_grant_type
+  title: Grant type not supported
+  source_operation: openapi/keyo-openapi.yml#OAuthClientCredentials
+- status: 401
+  code: invalid_client
+  title: Authentication failure
+  source_operation: openapi/keyo-openapi.yml#OAuthClientCredentials

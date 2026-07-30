@@ -1,0 +1,8 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/keyo-openapi.yml
+workflows:
+- file: keyo-enroll-identity.yml
+  workflowId: enrollPalmIdentity
+  title: Enroll a palm biometric identity
+  summary: Authenticate, create an Identity, and start palm enrollment on a device.

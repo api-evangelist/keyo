@@ -1,0 +1,26 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Keyo REST API
+  version: 1.0.0
+extends: openapi/keyo-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-rating: 3
+    x-apievangelist-notes: >-
+      Reconstructed from OpenAPI 3.0.3 fragments embedded in Keyo's developer
+      documentation (developers.keyo.co). Early-stage API; Identities + palm
+      enrollment surface plus OAuth2 client-credentials auth and a webhook event
+      catalog.
+- target: $.info
+  update:
+    x-authentication: authentication/keyo-authentication.yml
+    x-conventions: conventions/keyo-conventions.yml
+    x-errors: errors/keyo-problem-types.yml
+    x-webhooks: asyncapi/keyo-webhooks-asyncapi.yml
+- target: $.tags
+  update:
+  - name: Authentication
+    description: OAuth 2.0 client-credentials token exchange.
+  - name: Identities
+    description: Biometric identity lifecycle and palm enrollment.

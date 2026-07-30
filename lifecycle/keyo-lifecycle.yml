@@ -1,0 +1,20 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.keyo.co
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://developers.keyo.co/getting-started/overview
+maturity: >-
+  Keyo describes its developer tools and APIs as "early-stage" and in an "active
+  development phase," with more features planned "later this year" (per the
+  developer Overview page).
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  notes: No deprecation policy or RFC 8594 Sunset/Deprecation header support documented.
+sla:
+  url: null
+  uptime_target: null
+status_page: https://status.keyo.co
+deprecated_operations: []

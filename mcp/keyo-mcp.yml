@@ -1,0 +1,33 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/keyo-openapi.yml
+notes: >-
+  No official hosted/remote Keyo MCP server was found (no entry in the MCP
+  registry, npm @modelcontextprotocol, or Keyo docs). This is a candidate tool
+  list derived one-to-one from the reconstructed OpenAPI operations.
+server:
+  name: keyo
+  transport: http
+tools:
+- name: obtain_access_token
+  description: Exchange client credentials for a bearer access token.
+  source_operation: openapi/keyo-openapi.yml#OAuthClientCredentials
+- name: list_identities
+  description: Retrieve a paginated list of identities.
+  source_operation: openapi/keyo-openapi.yml#IdentitiesGet
+- name: create_identity
+  description: Create a biometric identity for a user.
+  source_operation: openapi/keyo-openapi.yml#IdentitiesPost
+- name: get_identity
+  description: Retrieve a single identity by id.
+  source_operation: openapi/keyo-openapi.yml#IdentityGet
+- name: update_identity
+  description: Update an identity's fields or metadata.
+  source_operation: openapi/keyo-openapi.yml#IdentitiesPatch
+- name: delete_identity
+  description: Delete an identity, including its biometric data.
+  source_operation: openapi/keyo-openapi.yml#IdentitiesDelete
+- name: start_biometric_enrollment
+  description: Begin palm biometric enrollment for an identity on a device.
+  source_operation: openapi/keyo-openapi.yml#IdentitiesStartEnroll

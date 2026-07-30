@@ -1,0 +1,12 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/keyo-openapi.yml
+skills:
+- file: keyo-enroll-palm-identity.md
+  name: Enroll a palm biometric identity
+  api: openapi/keyo-openapi.yml
+  operations: [OAuthClientCredentials, IdentitiesPost, IdentitiesStartEnroll]
+- file: keyo-manage-identities.md
+  name: Manage biometric identities
+  api: openapi/keyo-openapi.yml
+  operations: [OAuthClientCredentials, IdentitiesGet, IdentityGet, IdentitiesPatch, IdentitiesDelete]

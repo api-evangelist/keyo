@@ -1,0 +1,23 @@
+generated: '2026-07-19'
+method: searched
+probe: true
+source: https://keyo.com/security
+url: https://keyo.com/security
+certifications:
+- SOC 2
+- GDPR
+- CCPA
+- BIPA
+notes: >-
+  Keyo states it uses "military grade encryption for communication between every
+  component of the Keyo ecosystem, including between Keyo devices, SDK instances
+  and the Keyo Cloud." Compliance posture on the security page names SOC 2, GDPR,
+  CCPA, and BIPA (Illinois Biometric Information Privacy Act) - the latter two
+  reflecting Keyo's biometric-data domain.
+evidence:
+- source: https://keyo.com/security
+  keywords:
+  - soc 2
+  - gdpr
+  - ccpa
+  - bipa

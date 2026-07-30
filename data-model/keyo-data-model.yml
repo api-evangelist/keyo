@@ -1,0 +1,41 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/keyo-openapi.yml
+docs: https://developers.keyo.co/rest-api/identities
+entities:
+- name: Identity
+  description: >-
+    Links a person's biometric data stored in Keyo to their user account in the
+    integrator's system. Carries name, contact (email or phone), timestamps, and
+    arbitrary string metadata.
+  id_field: id
+  id_type: integer
+  fields:
+  - first_name
+  - last_name
+  - email
+  - phone
+  - metadata
+  - creation_date
+  - update_date
+- name: Device
+  description: >-
+    A Keyo palm-scanning device on which a person enrolls their biometrics.
+    Referenced by id when starting enrollment; no CRUD endpoints are published
+    in the current REST API.
+  id_field: device_id
+  id_type: integer
+relationships:
+- from: Identity
+  to: Device
+  type: enrolls_on
+  via: device_id
+  evidence: POST /identities/{id}/start-enroll/ takes device_id
+events:
+  source: asyncapi/keyo-webhooks-asyncapi.yml
+  emitted_by: Identity
+  types:
+  - palm.enrollment.succeeded
+  - palm.enrollment.failed
+  - palm.identification.succeeded
+  - palm.identification.failed

@@ -1,0 +1,72 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.keyo.co
+docs:
+  authentication: https://developers.keyo.co/rest-api/authentication
+  identities: https://developers.keyo.co/rest-api/identities
+  webhooks: https://developers.keyo.co/webhooks/overview
+summary: >-
+  Cross-cutting request/response conventions for the Keyo REST API, captured from
+  the developer documentation and the reconstructed OpenAPI.
+authentication:
+  style: oauth2-client-credentials
+  token_endpoint: https://api.keyo.co/v1/oauth/token/
+  request_header: 'Authorization: Bearer <access-token>'
+  detail: authentication/keyo-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  base_paths:
+  - https://api.keyo.co/v1
+  - https://api.africa.keyo.co/v1
+pagination:
+  style: limit-offset
+  params:
+  - limit
+  - offset
+  response_fields:
+  - count
+  - next
+  - previous
+  - results
+metadata:
+  supported: true
+  shape: object of string key-value pairs on Identity (`metadata`)
+  purpose: >-
+    Store the integrator's own user identifier or any supplementary integration
+    data alongside a biometric Identity.
+idempotency:
+  supported: false
+  notes: No idempotency key header or param is documented or present in the OpenAPI.
+request_tracing:
+  supported: unknown
+  notes: No request-id/correlation header is documented.
+error_envelope:
+  oauth_errors:
+    shape: '{ "error": "<oauth2-error-code>" }'
+    location: POST /oauth/token/ 400/401 responses
+    codes:
+    - invalid_request
+    - invalid_client
+    - invalid_grant
+    - invalid_scope
+    - unauthorized_client
+    - unsupported_grant_type
+  detail: errors/keyo-problem-types.yml
+webhooks:
+  delivery: HTTP POST (application/json) to a registered endpoint URL
+  verification_header: X-Keyo-Token
+  verification: >-
+    Optional shared-secret token configured at webhook registration; Keyo sends
+    it in the `X-Keyo-Token` header and the receiver compares it to the
+    configured value, returning 401 on mismatch.
+  ack: Return HTTP 200 to acknowledge receipt
+  detail: asyncapi/keyo-webhooks-asyncapi.yml
+rate_limits:
+  documented: false
+  notes: No published rate-limit policy or headers found.
+cross_links:
+  authentication: authentication/keyo-authentication.yml
+  errors: errors/keyo-problem-types.yml
+  lifecycle: lifecycle/keyo-lifecycle.yml
+  webhooks: asyncapi/keyo-webhooks-asyncapi.yml

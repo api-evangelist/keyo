@@ -1,0 +1,34 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/keyo-openapi.yml
+docs: https://keyo.com/security
+standards:
+- id: oauth2-client-credentials
+  conforms: true
+  evidence: >-
+    POST /oauth/token/ exchanges base64 client credentials for a bearer token
+    (RFC 6749 client_credentials grant); documented in the authentication guide.
+- id: oidc
+  conforms: false
+  evidence: No OpenID Connect discovery or id_token issuance documented.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use RFC 6749 OAuth error objects, not application/problem+json.
+- id: pagination-limit-offset
+  conforms: true
+  evidence: /identities/ supports limit/offset with count/next/previous/results envelope.
+- id: rfc8594-sunset
+  conforms: false
+  evidence: No Sunset/Deprecation header support documented.
+- id: soc2
+  conforms: true
+  evidence: SOC 2 named on https://keyo.com/security
+- id: gdpr
+  conforms: true
+  evidence: GDPR named on https://keyo.com/security
+- id: ccpa
+  conforms: true
+  evidence: CCPA named on https://keyo.com/security
+- id: bipa
+  conforms: true
+  evidence: BIPA (Illinois Biometric Information Privacy Act) named on https://keyo.com/security

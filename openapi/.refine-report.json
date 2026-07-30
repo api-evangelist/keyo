@@ -1,0 +1,16 @@
+{
+  "provider": "keyo",
+  "sources": [
+    "keyo-authentication-api-openapi.yml",
+    "keyo-identities-api-openapi.yml"
+  ],
+  "outputs": [
+    "keyo-authentication-api-openapi.yml",
+    "keyo-identities-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
