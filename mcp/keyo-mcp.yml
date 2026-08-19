@@ -2,10 +2,8 @@ generated: '2026-07-19'
 method: derived
 status: candidate
 source: openapi/keyo-openapi.yml
-notes: >-
-  No official hosted/remote Keyo MCP server was found (no entry in the MCP
-  registry, npm @modelcontextprotocol, or Keyo docs). This is a candidate tool
-  list derived one-to-one from the reconstructed OpenAPI operations.
+notes: No official hosted/remote Keyo MCP server was found (no entry in the MCP registry, npm @modelcontextprotocol,
+  or Keyo docs). This is a candidate tool list derived one-to-one from the reconstructed OpenAPI operations.
 server:
   name: keyo
   transport: http
@@ -31,3 +29,9 @@ tools:
 - name: start_biometric_enrollment
   description: Begin palm biometric enrollment for an identity on a device.
   source_operation: openapi/keyo-openapi.yml#IdentitiesStartEnroll
+deployment:
+  mode: none
+  verified: derived
+  tools: 7
+  checked: '2026-08-12'
+  source: catalog MCP census

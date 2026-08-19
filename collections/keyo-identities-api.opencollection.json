@@ -1,0 +1,148 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Keyo REST Authentication Identities API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a list of identities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.keyo.co/v1/identities/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The initial index from which to return the results."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of identities."
+        },
+        {
+          "info": {
+            "name": "Create an identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keyo.co/v1/identities/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create the Identity for a user relying on biometric identification to access services."
+        },
+        {
+          "info": {
+            "name": "Retrieve single identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.keyo.co/v1/identities/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource"
+              }
+            ]
+          },
+          "docs": "Retrieve single identity"
+        },
+        {
+          "info": {
+            "name": "Update identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.keyo.co/v1/identities/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update identity"
+        },
+        {
+          "info": {
+            "name": "Delete identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.keyo.co/v1/identities/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource"
+              }
+            ]
+          },
+          "docs": "Completely deletes an identity, including biometric data."
+        },
+        {
+          "info": {
+            "name": "Start biometric enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.keyo.co/v1/identities/:id/start-enroll/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Begin the biometric data collection process for identity on the specified device."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
