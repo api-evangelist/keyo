@@ -6,8 +6,11 @@ info:
     Authenticate, create a Keyo Identity, and start palm biometric enrollment on
     a device. Grounded in the reconstructed Keyo OpenAPI operationIds.
 sourceDescriptions:
-- name: keyo
-  url: ../openapi/keyo-openapi.yml
+- name: authenticationApi
+  url: ../openapi/keyo-authentication-api-openapi.yml
+  type: openapi
+- name: identitiesApi
+  url: ../openapi/keyo-identities-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: enrollPalmIdentity
