@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Keyo REST Authentication Identities API
+  title: Keyo REST Identities API
   version: 1.0.0
-  description: 'The Keyo REST API lets an organization manage biometric Identities and drive palm-based enrollment on Keyo devices. Authentication uses the OAuth 2.0 Client Credentials flow: a base64 secret key (client_id:client_secret) is exchanged at the token endpoint for a short-lived bearer access token that authorizes all subsequent requests. Reconstructed by API Evangelist from the OpenAPI 3.0.3 fragments Keyo publishes inline in its developer documentation at https://developers.keyo.co (getting-started, rest-api, and webhooks pages).'
+  description: The Keyo REST API lets an organization manage biometric Identities and drive palm-based enrollment on Keyo devices.
   contact:
     name: Keyo Developer Support
     url: https://developers.keyo.co/resources/support
@@ -144,19 +144,22 @@ paths:
                     type: string
 components:
   schemas:
-    IdentityBodyUpdate:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/IdentityBase'
-      - $ref: '#/components/schemas/Metadata'
-    IdentityBodyCreate:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/IdentityBase'
-      - $ref: '#/components/schemas/Metadata'
-      required:
-      - first_name
-      - last_name
+    IdentityBase:
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type:
+          - string
+          - 'null'
+          description: Required if `phone` is missing
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Required if `email` is missing
     IdentityList:
       type: object
       properties:
@@ -164,11 +167,13 @@ components:
           type: integer
           description: Total number of items available.
         next:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         previous:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         results:
           type: array
           items:
@@ -180,26 +185,20 @@ components:
       - $ref: '#/components/schemas/IdentityBase'
       - $ref: '#/components/schemas/Dates'
       - $ref: '#/components/schemas/Metadata'
-    IdentityBase:
-      properties:
-        first_name:
-          type: string
-        last_name:
-          type: string
-        email:
-          type: string
-          nullable: true
-          description: Required if `phone` is missing
-        phone:
-          type: string
-          nullable: true
-          description: Required if `email` is missing
     Dates:
       properties:
         update_date:
           type: string
         creation_date:
           type: string
+    IdentityBodyCreate:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/IdentityBase'
+      - $ref: '#/components/schemas/Metadata'
+      required:
+      - first_name
+      - last_name
     Metadata:
       properties:
         metadata:
@@ -207,6 +206,11 @@ components:
           additionalProperties:
             type: string
           description: Custom metadata as key-value pairs
+    IdentityBodyUpdate:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/IdentityBase'
+      - $ref: '#/components/schemas/Metadata'
     Id:
       properties:
         id:

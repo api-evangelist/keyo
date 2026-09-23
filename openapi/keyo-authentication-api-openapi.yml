@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Keyo REST Authentication API
   version: 1.0.0
-  description: 'The Keyo REST API lets an organization manage biometric Identities and drive palm-based enrollment on Keyo devices. Authentication uses the OAuth 2.0 Client Credentials flow: a base64 secret key (client_id:client_secret) is exchanged at the token endpoint for a short-lived bearer access token that authorizes all subsequent requests. Reconstructed by API Evangelist from the OpenAPI 3.0.3 fragments Keyo publishes inline in its developer documentation at https://developers.keyo.co (getting-started, rest-api, and webhooks pages).'
+  description: The Keyo REST API lets an organization manage biometric Identities and drive palm-based enrollment on Keyo devices.
   contact:
     name: Keyo Developer Support
     url: https://developers.keyo.co/resources/support
