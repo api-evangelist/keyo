@@ -144,6 +144,10 @@ paths:
                     type: string
 components:
   schemas:
+    Id:
+      properties:
+        id:
+          type: integer
     Identity:
       type: object
       allOf:
@@ -151,6 +155,19 @@ components:
       - $ref: '#/components/schemas/IdentityBase'
       - $ref: '#/components/schemas/Dates'
       - $ref: '#/components/schemas/Metadata'
+    Metadata:
+      properties:
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Custom metadata as key-value pairs
+    Dates:
+      properties:
+        update_date:
+          type: string
+        creation_date:
+          type: string
     IdentityBase:
       properties:
         first_name:
@@ -198,23 +215,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/IdentityBase'
       - $ref: '#/components/schemas/Metadata'
-    Id:
-      properties:
-        id:
-          type: integer
-    Dates:
-      properties:
-        update_date:
-          type: string
-        creation_date:
-          type: string
-    Metadata:
-      properties:
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-          description: Custom metadata as key-value pairs
   parameters:
     ResourceId:
       name: id
