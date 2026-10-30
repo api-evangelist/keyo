@@ -64,6 +64,142 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Keyo is a company surfaced as a portfolio company of 500-global, obvious-ventures and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Keyo is a palm-based biometric identification platform offering a complete suite of touchless identity SaaS for payments, access control, ticketing, and time & attendance. Its palm-print and palm-vein (near-infrared) technology lets people verify their identity with a wave of the hand. Keyo exposes a REST API (developers.keyo.co) for managing biometric Identities and driving palm enrollment on Keyo devices, secured with the OAuth 2.0 client-credentials flow, plus real-time webhooks for enrollment and identification events. Keyo is backed by 500 Global and Obvious Ventures.
 
-Backed by: 500-global, obvious-ventures — https://keyo.com
+**Areas:** Company · Biometrics · Identity · Authentication · Palm Recognition · Access Control · Payments · Identity Verification
+
+## Keyo on APIs.io
+
+Everything profiled for Keyo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/keyo/](https://apis.io/providers/keyo/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Keyo Authentication API](https://apis.io/apis/keyo/keyo-authentication-api/) — Exchange client credentials for an access token.
+- [Keyo Identities API](https://apis.io/apis/keyo/keyo-identities-api/) — Manage biometric identities and palm enrollment.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Arazzo workflows (1)
+
+Multi-step workflows that chain operations into a business task.
+
+- [Keyo - enroll a palm biometric identity](https://apis.io/arazzos/keyo/keyo-enroll-identity/)
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Keyo Webhooks](https://apis.io/asyncapis/keyo/keyo-webhooks-asyncapi/)
+
+#### Event channels (1)
+
+Individual events and webhooks the provider emits.
+
+- [/your-webhook-endpoint](https://apis.io/channels/keyo/your-webhook-endpoint/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [keyo](https://apis.io/servers/keyo/keyo/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Keyo Agentic Access](https://apis.io/agentic-access/keyo/keyo-agentic-access/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [Keyo REST Authentication API](https://apis.io/collections/keyo/open-keyo-authentication-api/)
+- [Keyo REST Authentication Identities API](https://apis.io/collections/keyo/open-keyo-identities-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Keyo Openapi Overlay](https://apis.io/overlays/keyo/keyo-openapi-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Keyo Authentication](https://apis.io/security/keyo/keyo-authentication/)
+- [Keyo Domain Security](https://apis.io/security/keyo/keyo-domain-security/)
+- [Keyo Trust Center](https://apis.io/security/keyo/keyo-trust-center/)
+- [Keyo Vulnerability Disclosure](https://apis.io/security/keyo/keyo-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://keyo.com)
+- [Documentation](https://developers.keyo.co)
+- [Getting started](https://developers.keyo.co/getting-started/overview)
+- [API reference](https://developers.keyo.co/rest-api/identities)
+- [Sign up](https://keyo.com/get-keyo)
+- [Support](https://developers.keyo.co/resources/support)
+- [Blog](https://keyo.com/newsroom)
+- [Security](https://keyo.com/security)
+- [Compliance](https://keyo.com/security)
+- [Privacy policy](https://keyo.com/privacy)
+- [Status](https://status.keyo.co)
+
+## API Evangelist rating
+
+**Kin Score 47.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 58.8 |
+| Contract governance | 4.5 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 39.5 |
+
+**Agent readiness 24.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 27.6** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/keyo/](https://apis.io/providers/keyo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Keyo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/keyo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
